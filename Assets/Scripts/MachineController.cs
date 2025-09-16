@@ -59,7 +59,7 @@ public class MachineController : MonoBehaviour
 
                 Pieza randomTarget = piezas[Random.Range(0, piezas.Count)];
                 GameObject obj = Instantiate(randomTarget.prefab,
-                    pos, Quaternion.Euler(90, 0, 0), rielT);
+                    pos, Quaternion.Euler(randomTarget.startRotation), rielT);
 
                 PiezaEnEscena piezaEnEscena = obj.GetComponent<PiezaEnEscena>();
                 piezaEnEscena.pieza = randomTarget;
@@ -81,6 +81,7 @@ public class MachineController : MonoBehaviour
 [System.Serializable]
 public class Pieza
 {
+    public Vector3 startRotation;
     public string nombre;
     public float recompensa;
     public GameObject prefab;

@@ -94,6 +94,50 @@ public class SlotEvaluator : MonoBehaviour
                 }
             }
 
+            // --- Evaluar diagonales ---
+            for (int x = 0; x < cols; x++)
+            {
+                for (int y = 0; y < rows; y++)
+                {
+                    if (piezasCreadas[x, y] == null) continue;
+
+                    // ↘ diagonal (derecha-abajo)
+                    List<PiezaEnEscena> diag1 = new List<PiezaEnEscena>();
+                    int dx = x, dy = y;
+                    string nombre = piezasCreadas[x, y].pieza.nombre;
+                    while (dx < cols && dy < rows && piezasCreadas[dx, dy] != null &&
+                           piezasCreadas[dx, dy].pieza.nombre == nombre)
+                    {
+                        diag1.Add(piezasCreadas[dx, dy]);
+                        dx++;
+                        dy++;
+                    }
+                    if (diag1.Count >= 3)
+                    {
+                        foreach (var p in diag1)
+                            if (!toDestroy.Contains(p)) toDestroy.Add(p);
+                        anyMatch = true;
+                    }
+
+                    // ↙ diagonal (izquierda-abajo)
+                    List<PiezaEnEscena> diag2 = new List<PiezaEnEscena>();
+                    dx = x; dy = y;
+                    while (dx >= 0 && dy < rows && piezasCreadas[dx, dy] != null &&
+                           piezasCreadas[dx, dy].pieza.nombre == nombre)
+                    {
+                        diag2.Add(piezasCreadas[dx, dy]);
+                        dx--;
+                        dy++;
+                    }
+                    if (diag2.Count >= 3)
+                    {
+                        foreach (var p in diag2)
+                            if (!toDestroy.Contains(p)) toDestroy.Add(p);
+                        anyMatch = true;
+                    }
+                }
+            }
+
             // --- Animar destrucción ---
             foreach (var pieza in toDestroy)
             {
@@ -155,7 +199,7 @@ public class SlotEvaluator : MonoBehaviour
 
                             GameObject obj = Instantiate(randomPieza.prefab,
                                 Vector3.zero,
-                                Quaternion.Euler(90, 0, 0),
+                                Quaternion.Euler(randomPieza.startRotation),
                                 parentRiel);
 
                             PiezaEnEscena nueva = obj.GetComponent<PiezaEnEscena>();

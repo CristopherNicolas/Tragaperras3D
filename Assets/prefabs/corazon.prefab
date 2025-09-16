@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7737931025373567582
+--- !u!1 &8961366556313004806
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7147064683157158937}
-  - component: {fileID: 1473986157736411427}
-  - component: {fileID: 5747989966916417854}
-  - component: {fileID: -3408922233024742417}
+  - component: {fileID: 4101023919712173720}
+  - component: {fileID: 5242735694635446355}
+  - component: {fileID: 4324229041171116096}
+  - component: {fileID: -1221087753395087180}
   m_Layer: 0
-  m_Name: pieza roja
+  m_Name: corazon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7147064683157158937
+--- !u!4 &4101023919712173720
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7737931025373567582}
+  m_GameObject: {fileID: 8961366556313004806}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -34,21 +34,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1473986157736411427
+--- !u!33 &5242735694635446355
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7737931025373567582}
-  m_Mesh: {fileID: -6903301711426641970, guid: 5aab10a4fb0d8e940be1e20b70298b22, type: 3}
---- !u!23 &5747989966916417854
+  m_GameObject: {fileID: 8961366556313004806}
+  m_Mesh: {fileID: 392021372287592060, guid: 5aab10a4fb0d8e940be1e20b70298b22, type: 3}
+--- !u!23 &4324229041171116096
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7737931025373567582}
+  m_GameObject: {fileID: 8961366556313004806}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,19 +87,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-3408922233024742417
+--- !u!114 &-1221087753395087180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7737931025373567582}
+  m_GameObject: {fileID: 8961366556313004806}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38de919814b96474bbfe68ff59bb7530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pieza:
-    nombre: 
+    nombre: Corazon
     recompensa: 0
-    prefab: {fileID: 0}
+    prefab: {fileID: 8961366556313004806}

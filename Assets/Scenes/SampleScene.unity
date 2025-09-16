@@ -924,16 +924,20 @@ MonoBehaviour:
   - {fileID: 954028216}
   - {fileID: 423336178}
   piezas:
-  - nombre: Blue
+  - startRotation: {x: 90, y: 0, z: 0}
+    nombre: Blue
     recompensa: 10
     prefab: {fileID: 6797789613132676567, guid: 029f6fee1ef513845ba1dffeb3ddd817, type: 3}
-  - nombre: Red
+  - startRotation: {x: 270, y: 0, z: 0}
+    nombre: Corazon
     recompensa: 20
-    prefab: {fileID: 7737931025373567582, guid: dfe3a0db36a5ab1498a06679d384c9c7, type: 3}
-  - nombre: Pink
+    prefab: {fileID: 8961366556313004806, guid: 66657c18b9c32ec4ba6bc5f491c8c278, type: 3}
+  - startRotation: {x: 90, y: 0, z: 0}
+    nombre: Pink
     recompensa: 50
     prefab: {fileID: 7737931025373567582, guid: aad6802b98d2fe74da4bccee643b02ef, type: 3}
-  - nombre: Green
+  - startRotation: {x: 90, y: 0, z: 0}
+    nombre: Green
     recompensa: 100
     prefab: {fileID: 7737931025373567582, guid: 5fded00a03e59f64ea5d7fe1efe06ab9, type: 3}
   cantidadDePiezasPorRiel: 4
@@ -955,7 +959,7 @@ MonoBehaviour:
   destroyAnimDuration: 2
   fallDuration: 0.5
   punchScale: 1.3
-  punchRotation: 360
+  punchRotation: 180
   firstPieceY: -11.9
   offsetY: 1.5
 --- !u!1 &1075296280
