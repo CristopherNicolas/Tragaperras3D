@@ -940,7 +940,7 @@ MonoBehaviour:
     nombre: Green
     recompensa: 100
     prefab: {fileID: 7737931025373567582, guid: 5fded00a03e59f64ea5d7fe1efe06ab9, type: 3}
-  cantidadDePiezasPorRiel: 4
+  cantidadDePiezasPorRiel: 5
   offsetY: 2.5
   evaluator: {fileID: 982612029}
 --- !u!114 &982612029
