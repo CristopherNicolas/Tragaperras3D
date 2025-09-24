@@ -2,8 +2,13 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 
+/// <summary>
+/// Controla la animacion de un riel (reel) en la maquina de tragaperras.
+/// deberia estar desactivado y activarse antes de iniciar el giro.
+/// </summary>
 public class RielAnimator : MonoBehaviour
 {
+
     public Transform riel;
     public float spinDuration = 1f;
     public float bounceStrength = 0.3f;

@@ -5,9 +5,10 @@ using System.Collections.Generic;
 
 public class SlotEvaluator : MonoBehaviour
 {
+    public CameraController cameraController;
     public PiezaEnEscena[,] piezasCreadas;
     public List<Pieza> piezasPrefab;
-    public float destroyAnimDuration = 0.3f;
+    public float destroyAnimDuration = 0.45f;
     public float fallDuration = 0.25f;
     public float punchScale = 1.3f;
     public float punchRotation = 30f;
@@ -144,10 +145,10 @@ public class SlotEvaluator : MonoBehaviour
                 if (pieza == null) continue;
                 totalPoints += Mathf.RoundToInt(pieza.pieza.recompensa);
 
-                pieza.transform.DOPunchScale(Vector3.one * punchScale, destroyAnimDuration, 1, 0.5f)
+                float animacionDuracion = pieza.Animacion();
+                pieza.transform.DOPunchScale(Vector3.one * punchScale, animacionDuracion, 1, 0.5f)
                     .OnComplete(() => Destroy(pieza.gameObject));
 
-                pieza.transform.DOPunchRotation(Vector3.forward * punchRotation, destroyAnimDuration, 1, 0.5f);
 
                 // Limpiar referencia
                 for (int x = 0; x < cols; x++)
@@ -157,6 +158,7 @@ public class SlotEvaluator : MonoBehaviour
             }
 
             yield return new WaitForSeconds(destroyAnimDuration);
+            cameraController.SetImpulseCamera(toDestroy.Count);
 
             // --- Hacer caer piezas existentes y generar nuevas ---
             for (int x = 0; x < cols; x++)
@@ -221,6 +223,9 @@ public class SlotEvaluator : MonoBehaviour
             yield return new WaitForSeconds(fallDuration + 0.05f);
         }
 
+        cameraController.SetCamera("idle");
         Debug.Log("Evaluación completa! Puntos obtenidos: " + totalPoints);
+        MachineController.instance.puntos += totalPoints;
+        MachineController.instance.DestruirPiezas();
     }
 }
