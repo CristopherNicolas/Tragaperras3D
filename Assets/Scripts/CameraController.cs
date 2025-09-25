@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 public class CameraController : MonoBehaviour
 {
     public static CameraController Instance;
+    public CinemachineBrain brain;
 
     [System.Serializable]
     public class CamSetup
@@ -69,5 +70,20 @@ public class CameraController : MonoBehaviour
     {
         cinemachineImpulseSource.GenerateImpulse(multiplayer * .15f);
         Debug.LogFormat($" impulso camara : {multiplayer * .15f}");
+    }
+
+    public void GetFocus(Transform target, float changeTime)
+    {
+        CinemachineCamera activeCam = GetActiveCamera();
+        if (activeCam != null)
+        {
+            // Cambiar el tiempo del blend
+            brain.DefaultBlend = new CinemachineBlendDefinition(
+                CinemachineBlendDefinition.Styles.EaseInOut, changeTime
+            );
+
+            // Apuntar al nuevo target
+            activeCam.LookAt = target;
+        }
     }
 }

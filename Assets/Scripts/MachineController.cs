@@ -5,6 +5,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using System.Collections;
 using System.Linq;
+using TMPro;
 
 public class MachineController : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class MachineController : MonoBehaviour
     public CameraController cameraController;
     private int rielesEnMovimiento;
     public int cantidadDeRielesSeleccionados;
+    public GameObject btnsWorldContainer;
 
     void Awake()
     {
@@ -31,22 +33,26 @@ public class MachineController : MonoBehaviour
         {
             instance = this;
         }
+        PanelApuesta.instance.MostrarEsconderPanel(true);//mostrar
     }
+    public string GetStats()=> $"Tiradas: {tiradasDisponibles} - Puntos: {puntos} - Veces tirado: {vecesQueSeHaTirado}";
 
-    IEnumerator Start()
-    {
-        //Deberia de modificarse esto para que cambie con respecto a los botones presionados
-        // como todo el sistema de la maquina trabaja con la lista rieles, tener vacia y al presionar el 
-        //boton del riel agregar a la lista
-        yield return new WaitUntil(() => !throwButton.interactable); // podria dar fallos
-       
-    }
 
     [Button("Girar Reels")]
     public void SpinReels()
     {
-        if (rielesEnMovimiento > 0) return;
-        
+        if (rielesEnMovimiento > 0 || tiradasDisponibles<=0 || cantidadDeRielesSeleccionados ==0 ) return;
+
+        //desactivar texto btns
+        int bCC = btnsWorldContainer.transform.childCount;
+        for (int i = 0; i < bCC; i++)
+        {
+            btnsWorldContainer.transform.GetChild(i).transform
+            .GetComponentInChildren<TMP_Text>()
+            .DOFade(0, .75f);
+        }
+        PanelApuesta.instance.MostrarEsconderPanel(false);//esconder
+
         rieles = rielesDisponibles.Take(cantidadDeRielesSeleccionados).ToList();
         Debug.Log("Rieles a girar: " + rieles.Count);   
 
@@ -132,7 +138,7 @@ public class MachineController : MonoBehaviour
                 pieza.transform.DOScale(Vector3.zero, 1.35f)
                     .OnComplete(() =>
                     {
-                        Destroy(pieza.gameObject);  
+                        Destroy(pieza.gameObject);
                         destruidas++;
 
                         if (destruidas >= totalPorDestruir)
@@ -144,7 +150,16 @@ public class MachineController : MonoBehaviour
                     });
             }
         }
-        throwButton.transform.DOScale(Vector3.one, .5f).SetDelay(1.45f).OnComplete(()=> throwButton.interactable = true);
+        throwButton.transform.DOScale(Vector3.one, .5f).SetDelay(1.45f).OnComplete(() => throwButton.interactable = true);
+        //desactivar texto btns
+        int bCC = btnsWorldContainer.transform.childCount;
+        for (int i = 0; i < bCC; i++)
+        {
+            btnsWorldContainer.transform.GetChild(i).transform
+            .GetComponentInChildren<TMP_Text>()
+            .DOFade(1, .75f);
+        }
+        PanelApuesta.instance.MostrarEsconderPanel(true);//mostrar
     }
 
 

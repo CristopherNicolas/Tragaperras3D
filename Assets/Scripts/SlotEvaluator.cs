@@ -145,6 +145,7 @@ public class SlotEvaluator : MonoBehaviour
                 if (pieza == null) continue;
                 totalPoints += Mathf.RoundToInt(pieza.pieza.recompensa);
 
+                CameraController.Instance.GetFocus(pieza.transform, destroyAnimDuration/2);
                 float animacionDuracion = pieza.Animacion();
                 pieza.transform.DOPunchScale(Vector3.one * punchScale, animacionDuracion, 1, 0.5f)
                     .OnComplete(() => Destroy(pieza.gameObject));
