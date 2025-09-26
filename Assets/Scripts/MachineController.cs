@@ -26,6 +26,8 @@ public class MachineController : MonoBehaviour
     private int rielesEnMovimiento;
     public int cantidadDeRielesSeleccionados;
     public GameObject btnsWorldContainer;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip clipTerminar;
 
     void Awake()
     {
@@ -43,6 +45,7 @@ public class MachineController : MonoBehaviour
     {
         if (rielesEnMovimiento > 0 || tiradasDisponibles<=0 || cantidadDeRielesSeleccionados ==0 ) return;
 
+        audioSource.Play();
         //desactivar texto btns
         int bCC = btnsWorldContainer.transform.childCount;
         for (int i = 0; i < bCC; i++)
@@ -159,7 +162,9 @@ public class MachineController : MonoBehaviour
             .GetComponentInChildren<TMP_Text>()
             .DOFade(1, .75f);
         }
+        audioSource.PlayOneShot(clipTerminar);
         PanelApuesta.instance.MostrarEsconderPanel(true);//mostrar
+        
     }
 
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class SlotEvaluator : MonoBehaviour
 {
+
     public CameraController cameraController;
     public PiezaEnEscena[,] piezasCreadas;
     public List<Pieza> piezasPrefab;
@@ -145,7 +146,6 @@ public class SlotEvaluator : MonoBehaviour
                 if (pieza == null) continue;
                 totalPoints += Mathf.RoundToInt(pieza.pieza.recompensa);
 
-                CameraController.Instance.GetFocus(pieza.transform, destroyAnimDuration/2);
                 float animacionDuracion = pieza.Animacion();
                 pieza.transform.DOPunchScale(Vector3.one * punchScale, animacionDuracion, 1, 0.5f)
                     .OnComplete(() => Destroy(pieza.gameObject));
@@ -226,7 +226,10 @@ public class SlotEvaluator : MonoBehaviour
 
         cameraController.SetCamera("idle");
         Debug.Log("Evaluación completa! Puntos obtenidos: " + totalPoints);
+        int valorInicial = MachineController.instance.puntos, valorFinal = MachineController.instance.puntos+totalPoints;
         MachineController.instance.puntos += totalPoints;
+        //aqui activar evento de UI con los puntos ganados 
+        PanelApuesta.instance.AnimarPuntos(valorInicial, valorFinal,5);
         MachineController.instance.DestruirPiezas();
     }
 }

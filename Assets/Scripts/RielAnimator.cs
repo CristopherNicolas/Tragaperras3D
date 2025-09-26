@@ -9,6 +9,7 @@ using System;
 public class RielAnimator : MonoBehaviour
 {
 
+    public AudioSource audioSource;
     public Transform riel;
     public float spinDuration = 1f;
     public float bounceStrength = 0.3f;
@@ -23,7 +24,7 @@ public class RielAnimator : MonoBehaviour
     public void MovePiecesToTargetY(float firstPieceY, float offsetY)
     {
         if (riel == null) return;
-
+        audioSource.Play();
         int totalPiezas = riel.childCount;
         int completed = 0;
 

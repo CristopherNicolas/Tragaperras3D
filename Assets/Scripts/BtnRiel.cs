@@ -4,6 +4,7 @@ using UnityEngine;
 public class BtnRiel : MonoBehaviour
 {
     public GameObject worldCanvas;
+    public Transform pulser;
     public AudioSource source;
     private float startYpos;
     public int indexRiel;
@@ -13,7 +14,7 @@ public class BtnRiel : MonoBehaviour
 
     void Awake()
     {
-        startYpos = transform.position.y;
+        startYpos = pulser.localPosition.y;
         // obtener todos los botones desde el padre
         allButtons = transform.parent.GetComponentsInChildren<BtnRiel>();
     }
@@ -62,7 +63,7 @@ public class BtnRiel : MonoBehaviour
         if (btnPresionado) return;
 
         btnPresionado = true;
-        transform.DOMoveY(-2.811f, .85f);
+        pulser.DOLocalMoveY(startYpos- .55f, .85f);
         Debug.Log("Btn activado → riel " + indexRiel);
         MachineController.instance.rielesDisponibles[indexRiel].gameObject.SetActive(true);
     }
@@ -72,7 +73,7 @@ public class BtnRiel : MonoBehaviour
         if (!btnPresionado) return;
 
         btnPresionado = false;
-        transform.DOMoveY(startYpos, .35f);
+        pulser.DOLocalMoveY(startYpos, .35f);
         Debug.Log("Btn desactivado → riel " + indexRiel);
         MachineController.instance.rielesDisponibles[indexRiel].gameObject.SetActive(false);
     }
