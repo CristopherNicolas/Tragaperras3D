@@ -2568,6 +2568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee34457aa43e4f4693ba13341459347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineDrawer: {fileID: 0}
   cameraController: {fileID: 1955349525}
   piezasPrefab: []
   destroyAnimDuration: 2
@@ -3488,6 +3489,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496988514}
   m_CullTransparentMesh: 1
+--- !u!1 &1515404609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1515404611}
+  - component: {fileID: 1515404610}
+  m_Layer: 0
+  m_Name: Line Drawer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1515404610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515404609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab3d4958010e0a4f85564ac6cd32d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linePrefab: {fileID: 8912161436495455005, guid: 9c9d711299124894e9b63a528ccca12a, type: 3}
+--- !u!4 &1515404611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515404609}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25401735, y: 2.8222897, z: 0.18844986}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1555583739
 GameObject:
   m_ObjectHideFlags: 0
@@ -5541,3 +5587,4 @@ SceneRoots:
   - {fileID: 982612027}
   - {fileID: 1955349524}
   - {fileID: 426703542}
+  - {fileID: 1515404611}
