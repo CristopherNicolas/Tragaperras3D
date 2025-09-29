@@ -8,6 +8,8 @@ public class PanelApuesta : MonoBehaviour
     public CanvasGroup canvasGroup;
     public static PanelApuesta instance;
     public TMP_Text statsText, contadorIncremento;
+    public TMP_Text apuestaText; //para mostrar los puntos ganados al terminar.
+    public TMP_Text apuestaTextARealizar; //para mostrar los puntos antes de tirar.
 
     public void UpdateUI()
     {
@@ -18,6 +20,23 @@ public class PanelApuesta : MonoBehaviour
     {
         if (instance == null) instance = this;
     }
+
+    public int apuestaActual;
+    public void AumentarApuesta(int incremento)
+    {
+        if (incremento > MachineController.instance.puntos) return;
+
+
+        Debug.Log($"Apuesta actual: {apuestaActual} - Incremento: {incremento}");
+        apuestaActual += incremento;
+        if (apuestaActual < 0) apuestaActual = 0;
+        apuestaTextARealizar.text = $"Apuesta: {apuestaActual}$";
+        apuestaTextARealizar.transform.DOPunchScale(Vector3.one * 0.2f, 0.4f, 4, 0.8f)
+        .OnComplete(() => apuestaTextARealizar.transform.localScale = Vector3.one);
+        UpdateUI();
+        //despues al realizar el spin se restara de los puntos del jugador.
+    }
+
 
     public void MostrarEsconderPanel(bool mostrar)
     {

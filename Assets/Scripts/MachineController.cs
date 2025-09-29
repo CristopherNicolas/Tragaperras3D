@@ -10,7 +10,6 @@ using TMPro;
 public class MachineController : MonoBehaviour
 {
     //stats para usar la maquina
-    [FoldoutGroup("Stats jugador"), SerializeField] int tiradasDisponibles = 3;
     [FoldoutGroup("Stats jugador")] public int puntos = 0;
     [FoldoutGroup("Stats jugador"), SerializeField] int vecesQueSeHaTirado = 0;
 
@@ -37,13 +36,16 @@ public class MachineController : MonoBehaviour
         }
         PanelApuesta.instance.MostrarEsconderPanel(true);//mostrar
     }
-    public string GetStats()=> $"Tiradas: {tiradasDisponibles} - Puntos: {puntos} - Veces tirado: {vecesQueSeHaTirado}";
+    public string GetStats()=> $"Puntos: {puntos} - Veces tirado: {vecesQueSeHaTirado}";
 
-
+        
     [Button("Girar Reels")]
     public void SpinReels()
     {
-        if (rielesEnMovimiento > 0 || tiradasDisponibles<=0 || cantidadDeRielesSeleccionados ==0 ) return;
+        if (rielesEnMovimiento > 0 || puntos<=0|| cantidadDeRielesSeleccionados ==0 ) return;
+        //con la cantidad de rieles seleccionados. multiplicar el costo
+        puntos -= cantidadDeRielesSeleccionados * PanelApuesta.instance.apuestaActual;
+
 
         audioSource.Play();
         //desactivar texto btns
@@ -65,7 +67,6 @@ public class MachineController : MonoBehaviour
         throwButton.interactable = false;
         throwButton.transform.DOScale(Vector3.zero, .5f);  
         cameraController.SetCamera("spin");
-        tiradasDisponibles--;   
         vecesQueSeHaTirado++;
         rielesEnMovimiento = rieles.Count;
         
@@ -163,6 +164,11 @@ public class MachineController : MonoBehaviour
             .DOFade(1, .75f);
         }
         audioSource.PlayOneShot(clipTerminar);
+        if (PanelApuesta.instance.apuestaActual > puntos)
+        {
+            PanelApuesta.instance.apuestaActual = puntos;
+            PanelApuesta.instance.apuestaTextARealizar.text = $"Apuesta: {PanelApuesta.instance.apuestaActual}$";
+        }
         PanelApuesta.instance.MostrarEsconderPanel(true);//mostrar
         
     }
